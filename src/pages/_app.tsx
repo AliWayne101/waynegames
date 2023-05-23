@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app'
 import { Poppins, Fira_Code } from 'next/font/google';
 import Router from 'next/router';
@@ -15,7 +16,12 @@ const FiraCode = Fira_Code({
   weight: ["300", "400", "500", "600", "700"]
 });
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ 
+  Component,
+  pageProps: {
+    session, ...pageProps
+  }
+}: AppProps) {
   Router.events.on('routeChangeStart', () => {
     NProgress.start();
   });
@@ -36,7 +42,9 @@ export default function App({ Component, pageProps }: AppProps) {
           --poppins: ${poppins.style.fontFamily};
         }
       `}</style>
-      <Component {...pageProps} />
+      <SessionProvider session={session}>
+        <Component {...pageProps} />
+      </SessionProvider>
     </>
   )
 }

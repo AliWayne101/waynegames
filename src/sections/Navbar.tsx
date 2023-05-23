@@ -3,11 +3,15 @@ import React, { useState } from 'react'
 import { RxMagnifyingGlass } from 'react-icons/rx'
 import { BsArrowLeft } from 'react-icons/bs'
 import { FaRegUserCircle } from 'react-icons/fa'
-import Link from 'next/link'
+import { signIn, useSession } from 'next-auth/react'
+import Image from 'next/image'
 
 const Navbar = () => {
 
   const [isSearching, setIsSearching] = useState(false);
+
+  const { data: session } = useSession();
+
   return (
     <>
       <div className="w-full top-0 sticky bg-secondary justify-between p-5 z-20 navbar flex sm:hidden">
@@ -17,9 +21,9 @@ const Navbar = () => {
               <div><Logo /></div>
               <div className='mt-1 flex'>
                 <span onClick={() => setIsSearching(true)}><RxMagnifyingGlass size={32} /></span>
-                <span className="ml-2">
-                  <Link href={'/signin'}><FaRegUserCircle size={32} /></Link>
-                </span>
+                <div className="ml-2">
+                  <span className='cursor-pointer' onClick={() => signIn('github')}><FaRegUserCircle size={32} /></span>
+                </div>
               </div>
             </>
           ) : (
@@ -43,9 +47,24 @@ const Navbar = () => {
             <input type="text" name="" id="" className='text-white p-2 bg-transparent outline-none w-full' placeholder='Search..' />
             <span className='mt-1' onClick={() => setIsSearching(true)}><RxMagnifyingGlass size={32} /></span>
           </div>
-            <span className="mt-1 ml-2">
-              <Link href={'/signin'}><FaRegUserCircle size={32} /></Link>
-            </span>
+          <div className="mt-1 ml-2">
+            {
+
+              session ? (
+                session.user && (
+                  <Image
+                    src={session.user.image!}
+                    height={32}
+                    width={32}
+                    className='rounded-full' alt={'profile'}
+                  />
+                )
+              ) : (
+                <span className='cursor-pointer' onClick={() => signIn('github')}><FaRegUserCircle size={32} /></span>
+              )
+            }
+
+          </div>
         </div>
       </div>
     </>
