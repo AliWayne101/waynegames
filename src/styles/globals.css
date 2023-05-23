@@ -3,25 +3,139 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --bg-primary: #292444;
+  --bg-secondary: #342e57;
+  --text-theme: #b8e51e;
+  --text-primary: rgb(223, 223, 223);
+  --text-slate: rgb(160, 156, 156);
+  --text-body: 16px;
+  --text-extralg: 44px;
+  --text-lg: 28px;
+  --text-semilg: 24px;
+  --text-medium: 20px;
+  --text-normal: 18px;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--poppins);
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.firaCode {
+  font-family: var(--firaCode);
+}
+
+main {
+  margin: 0 3rem;
+}
+
+@media (max-width: 1020px) {
+  main {
+    margin: 0 0;
+  }
+}
+
+.logo {
+  font-size: var(--text-semilg);
+}
+
+.hero-image {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  object-position: 0 -150px;
+  position: absolute;
+  filter: blur(2px);
+}
+
+.color-primary {
+  color: var(--bg-secondary);
+}
+
+.hero-bg {
+  background-image: linear-gradient(to top, #292444, rgba(255, 255, 255, 0)),
+    url("/assets/upscaled-herobg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-text {
+  font-size: var(--text-extralg);
+  font-weight: 600;
+}
+
+.titles {
+  font-family: var(--firaCode);
+  font-size: var(--text-medium);
+  color: var(--text-theme);
+}
+
+.titles::after {
+  content: "";
+  display: block;
+  position: relative;
+  width: 300px;
+  background-color: var(--text-theme);
+  height: 2px;
+}
+
+.entryImage {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+  position: relative !important;
+}
+
+.link {
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  color: var(--text-theme);
+}
+
+.link:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 0.5px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--text-theme);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.link:hover::after,
+.link:focus::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+
+.link:focus {
+  outline: none;
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary); 
+}
+
+.color-theme {
+  color: var(--text-theme);
+  transition: 300ms ease-in-out;
+}
+
+.color-theme:hover {
+  transform: scale(1.1);
+}
+
+.navbar {
+  border-bottom: 1px solid var(--text-theme);
 }
