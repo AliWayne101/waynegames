@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { RxMagnifyingGlass } from 'react-icons/rx'
 import { BsArrowLeft } from 'react-icons/bs'
 import { FaRegUserCircle } from 'react-icons/fa'
-import { signIn, useSession } from 'next-auth/react'
+import { signIn, useSession, signOut } from 'next-auth/react'
 import Image from 'next/image'
 
 const Navbar = () => {
@@ -22,7 +22,21 @@ const Navbar = () => {
               <div className='mt-1 flex'>
                 <span onClick={() => setIsSearching(true)}><RxMagnifyingGlass size={32} /></span>
                 <div className="ml-2">
-                  <span className='cursor-pointer' onClick={() => signIn('github')}><FaRegUserCircle size={32} /></span>
+                  {
+                    session ? (
+                      session.user && (
+                        <Image
+                          src={session.user.image!}
+                          height={40}
+                          width={40}
+                          className='rounded-full' alt={'profile'}
+                          onClick={() => signOut()}
+                        />
+                      )
+                    ) : (
+                      <span className='cursor-pointer' onClick={() => signIn('github')}><FaRegUserCircle size={32} /></span>
+                    )
+                  }
                 </div>
               </div>
             </>
@@ -49,21 +63,20 @@ const Navbar = () => {
           </div>
           <div className="mt-1 ml-2">
             {
-
               session ? (
                 session.user && (
                   <Image
                     src={session.user.image!}
-                    height={32}
-                    width={32}
+                    height={40}
+                    width={40}
                     className='rounded-full' alt={'profile'}
+                    onClick={() => signOut()}
                   />
                 )
               ) : (
                 <span className='cursor-pointer' onClick={() => signIn('github')}><FaRegUserCircle size={32} /></span>
               )
             }
-
           </div>
         </div>
       </div>

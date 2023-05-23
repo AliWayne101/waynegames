@@ -6,7 +6,7 @@ const Topics = ({gamesList, topicTitle}: {gamesList: EntrySchema[], topicTitle: 
   return (
     <div className="w-full mt-20">
       <h2 className="titles mb-10">{topicTitle}</h2>
-      <div className="grid sm:grid-cols-4 grid-cols-1 gap-2 mb-10">
+      <div className="grid sm:grid-cols-4 grid-cols-2 gap-2 mb-10">
         {gamesList.map((data, index) => (
           <Entry data={data} index={index} key={index}/>
         ))}

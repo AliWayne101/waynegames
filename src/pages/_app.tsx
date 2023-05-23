@@ -16,7 +16,7 @@ const FiraCode = Fira_Code({
   weight: ["300", "400", "500", "600", "700"]
 });
 
-export default function App({ 
+export default function App({
   Component,
   pageProps: {
     session, ...pageProps

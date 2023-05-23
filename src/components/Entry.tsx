@@ -20,14 +20,19 @@ const Entry = ({data, index}: {data: EntrySchema, index: number}) => {
             <div className="text-center">Title: <span className="link">{data.name}</span></div>
             <div className="text-center">Platform: <span className="link">{data.platform}</span></div>
             <div className="text-center">Price: <span className="link">{data.price} PKR</span></div>
-            <div className="text-center mt-4">
-                Chat & Pay:
-                <Link href={`https://wa.me/${WebDetails.whatsappContact}`} target='_blank' title='Whatsapp' className='text-center justify-center inline-block align-middle'>
-                    <FaWhatsapp size={40} className='color-theme ml-2' />
-                </Link>
-                <Link href={`https://instagram.com/${WebDetails.instagramContact}`} target='_blank' title='Whatsapp' className='text-center justify-center inline-block align-middle'>
-                    <FaInstagram size={40} className='color-theme ml-2' />
-                </Link>
+            <div className="text-center justify-center mt-4 block sm:flex">
+                <div className='pt-0 sm:pt-2'>
+                    Chat & Pay:
+                </div>
+                <div className="text-center justify-center flex align-middle">
+                    <Link href={`https://wa.me/${WebDetails.whatsappContact}`} target='_blank' title='Whatsapp' className='text-center justify-center inline-block align-middle'>
+                        <FaWhatsapp size={40} className='color-theme ml-2' />
+                    </Link>
+                    <Link href={`https://instagram.com/${WebDetails.instagramContact}`} target='_blank' title='Whatsapp' className='text-center justify-center inline-block align-middle'>
+                        <FaInstagram size={40} className='color-theme ml-2' />
+                    </Link>
+                </div>
+                
             </div>
         </div>
     )
