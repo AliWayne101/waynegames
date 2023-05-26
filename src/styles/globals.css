@@ -136,6 +136,10 @@ main {
   transform: scale(1.1);
 }
 
+.bg-theme {
+  background-color: var(--text-theme);
+}
+
 .navbar {
   border-bottom: 1px solid var(--text-theme);
 }
